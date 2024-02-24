@@ -1,15 +1,24 @@
-'''TODO : CREATE A TEXT INPUT FIELD
-GET THE VAULE AND PASS IT TO MODEL
-SEE THE RESULT '''
-
 import streamlit as st
 import recommendor
+import warnings
 import pickle
 
-model = pickle.load("song-recommender-system/model/song_recommender.pkl")
+warnings.filterwarnings("ignore",category=Warning)
 
-choice = recommendor.get_recommendot(500,model,10)
+with open("./model/song_recommender.pkl", 'rb') as f:
+    model = pickle.load(f)
 
-song_list = recommendor.get_songs(choice)
+st.title("Ambi-fy")
+user_id = st.text_input("Enter the User Id", placeholder="Enter the user between 0 - 499")
 
-print(song_list)
+if st.button("Show Recommendations"):
+    if(int(user_id) < 500):
+        choice = recommendor.get_recommendor(150,model,int(user_id))
+        print(choice)
+        st.subheader("Songs Recommended For the user are:")
+        recommendations = recommendor.get_songs(choice)
+        for song in recommendations:
+            st.write(song)
+    else:
+        st.subheader("An Unexcepted error occured")
+        st.write(f"Invalid User {user_id}")
