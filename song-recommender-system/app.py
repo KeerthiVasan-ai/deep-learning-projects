@@ -2,7 +2,6 @@ import streamlit as st
 import recommendor
 import warnings
 import pickle
-
 warnings.filterwarnings("ignore",category=Warning)
 
 with open("./model/song_recommender.pkl", 'rb') as f:
