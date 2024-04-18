@@ -10,7 +10,7 @@ A deep learning application developed with the help of openai's whisper-tiny mod
 
 ## Getting into the Project
 
-#### Get all items
+#### Clone the Repository
 
 ```python
   git clone https://github.com/KeerthiVasan-ai/deep-learning-projects.git
